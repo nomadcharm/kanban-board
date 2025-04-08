@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Column as ColumnType, Task } from "../../types/types";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,18 +6,29 @@ import { RootState } from "../../store/store";
 import TaskCard from "../TaskCard/TaskCard";
 import StatusBar from "../StatusBar/StatusBar";
 import { deleteTask } from "../../store/features/tasksSlice";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 interface ColumnProps {
   column: ColumnType;
 }
 
 const Column: FC<ColumnProps> = ({ column }) => {
-  const tasks = useSelector((state: RootState) => state.tasks);
-  const filteredTasks = tasks.filter((task: Task) => task.statusId === column.id);
   const dispatch = useDispatch();
+  const tasks = useSelector((state: RootState) => state.tasks);
+  const [storedTasks, setStoredTasks] = useLocalStorage("tasks", tasks);
+  const filteredTasks = storedTasks.filter((task: Task) => task.statusId === column.id);
+
+  useEffect(() => {
+    const localStorageData = localStorage.getItem("tasks");
+    if (!localStorageData) {
+      setStoredTasks(tasks);
+    }
+  }, [tasks]);
 
   const handleDeleteTask = (taskName: string) => {
     dispatch(deleteTask({ taskName }));
+    const updatedTasks = storedTasks.filter((task) => task.taskName !== taskName);
+    setStoredTasks(updatedTasks);
   };
 
   return (
