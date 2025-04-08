@@ -3,25 +3,42 @@
 :root {
   --clr-white: #ffffff;
   --clr-mine-shaft: #212121;
-
-  /* column colors */
-  --clr-catskill-white: #f5faf9;
-  --clr-spring-wood: #fafaf5;
-  --clr-whisper: #f8f5fa;
-  --clr-pale-white: #f5f7fa;
-
-  /* text colors */
-  --clr-atoll: #0b6f62;
-  --clr-spicy-mustard: #6f690b;
-  --clr-windsor: #410b6f;
-  --clr-deep-sapphire: #0b2e6f;
   --clr-dove-gray: #696969;
+  --clr-tundora: #474747;
+  --clr-niagara: #0a9e8e;
 
-  /* background colors*/
+  /* waiting */
+  --clr-catskill-white: #f5faf9;
+  --clr-atoll: #0b6f62;
   --clr-white-ice: #d4f7f3;
+  --clr-edgewater: #bbddd6;
+
+  /* in progress */
+  --clr-spicy-mustard: #6f690b;
+  --clr-spring-wood: #fafaf5;
   --clr-cocoanut-cream: #f7f5d4;
+
+  /* testing */
+  --clr-whisper: #f8f5fa;
+  --clr-windsor: #410b6f;
   --clr-moon-raker: #e7d4f7;
+
+  /* ready */
+  --clr-pale-white: #f5f7fa;
+  --clr-deep-sapphire: #0b2e6f;
   --clr-moon-raker-blue: #d4e0f7;
+
+  /* low priority */
+  --clr-snowy-mint: #d6ffd8;
+  --clr-japanese-laurel: #018d0f;
+
+  /* medium priority */
+  --clr-milk-punch: #fff7d6;
+  --clr-brown: #8d5f01;
+
+  /* high priority */
+  --clr-cosmos: #ffd6d6;
+  --clr-red-berry: #8d0101;
 }
 
 html {

@@ -1,34 +1,33 @@
 import { FC } from "react";
-import { Column as ColumnType } from "../../types/types";
+import { Column as ColumnType, Task } from "../../types/types";
 import styled from "styled-components";
-import { ReactSVG } from "react-svg";
-import iconWaiting from "../../assets/img/icon-waiting.svg";
-import iconProgress from "../../assets/img/icon-progress.svg";
-import iconReady from "../../assets/img/icon-ready.svg";
-import iconTesting from "../../assets/img/icon-testing.svg";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import TaskCard from "../TaskCard/TaskCard";
+import StatusBar from "../StatusBar/StatusBar";
 
 interface ColumnProps {
   column: ColumnType;
 }
 
-const svgMap: { [key: number]: string } = {
-  0: iconWaiting,
-  1: iconProgress,
-  2: iconReady,
-  3: iconTesting,
-};
-
 const Column: FC<ColumnProps> = ({ column }) => {
+  const tasks = useSelector((state: RootState) => state.tasks);
+  const filteredTasks = tasks.filter((task: Task) => task.statusId === column.id);
+
   return (
     <ColumnContainer>
       <ColumnHeader>
-        <ColumnTitle id={column.id}>
-          <ReactSVG src={svgMap[column.id]} />
-          <span>{column.title}</span>
-        </ColumnTitle>
-        <ColumnTaskCount>0</ColumnTaskCount>
+        <StatusBar statusId={column.id} />
+        <ColumnTaskCount>{filteredTasks.length}</ColumnTaskCount>
       </ColumnHeader>
       <ColumnBody id={column.id}>
+        <TaskList>
+          {filteredTasks.map((task) => (
+            <li key={task.taskName}>
+              <TaskCard task={task} />
+            </li>
+          ))}
+        </TaskList>
         <button style={{ fontSize: "20px" }}>Новая задача</button>
       </ColumnBody>
     </ColumnContainer>
@@ -49,46 +48,8 @@ const ColumnHeader = styled.div`
   align-items: center;
 `;
 
-const ColumnTitle = styled.div<{ id: number }>`
-  display: flex;
-  gap: 4px;
-  align-items: center;
-  padding: 4px 12px;
-  border-radius: 9999px;
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: -0.5px;
-  color: ${({ id }) => {
-    switch (id) {
-      case 0:
-        return "var(--clr-atoll)";
-      case 1:
-        return "var(--clr-spicy-mustard)";
-      case 2:
-        return "var(--clr-deep-sapphire)";
-      case 3:
-        return "var(--clr-windsor)";
-      default:
-        return "var(--clr-mine-shaft)";
-    }
-  }};
-  background: ${({ id }) => {
-    switch (id) {
-      case 0:
-        return "var(--clr-white-ice)";
-      case 1:
-        return "var(--clr-cocoanut-cream)";
-      case 2:
-        return "var(--clr-moon-raker-blue)";
-      case 3:
-        return "var(--clr-moon-raker)";
-      default:
-        return "";
-    }
-  }};
-`;
-
 const ColumnTaskCount = styled.div`
+  font-size: 14px;
   color: var(--clr-dove-gray);
 `;
 
@@ -110,6 +71,13 @@ const ColumnBody = styled.div<{ id: number }>`
         return "";
     }
   }};
+`;
+
+const TaskList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
 `;
 
 export default Column;
