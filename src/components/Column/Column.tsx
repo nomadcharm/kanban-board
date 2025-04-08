@@ -19,7 +19,6 @@ const svgMap: { [key: number]: string } = {
 };
 
 const Column: FC<ColumnProps> = ({ column }) => {
-
   return (
     <ColumnContainer>
       <ColumnHeader>
@@ -27,16 +26,14 @@ const Column: FC<ColumnProps> = ({ column }) => {
           <ReactSVG src={svgMap[column.id]} />
           <span>{column.title}</span>
         </ColumnTitle>
-        <ColumnTaskCount>
-          0
-        </ColumnTaskCount>
+        <ColumnTaskCount>0</ColumnTaskCount>
       </ColumnHeader>
       <ColumnBody id={column.id}>
         <button style={{ fontSize: "20px" }}>Новая задача</button>
       </ColumnBody>
     </ColumnContainer>
-  )
-}
+  );
+};
 
 const ColumnContainer = styled.div`
   display: flex;

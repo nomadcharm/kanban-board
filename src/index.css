@@ -1,27 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Boldonse&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Tektur:wght@400..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Boldonse&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Tektur:wght@400..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
   --clr-white: #ffffff;
   --clr-mine-shaft: #212121;
 
   /* column colors */
-  --clr-catskill-white: #F5FAF9;
-  --clr-spring-wood: #FAFAF5;
-  --clr-whisper: #F8F5FA;
-  --clr-pale-white: #F5F7FA;
+  --clr-catskill-white: #f5faf9;
+  --clr-spring-wood: #fafaf5;
+  --clr-whisper: #f8f5fa;
+  --clr-pale-white: #f5f7fa;
 
   /* text colors */
-  --clr-atoll: #0B6F62;
-  --clr-spicy-mustard: #6F690B;
-  --clr-windsor: #410B6F;
-  --clr-deep-sapphire: #0B2E6F;
+  --clr-atoll: #0b6f62;
+  --clr-spicy-mustard: #6f690b;
+  --clr-windsor: #410b6f;
+  --clr-deep-sapphire: #0b2e6f;
   --clr-dove-gray: #696969;
 
   /* background colors*/
-  --clr-white-ice: #D4F7F3;
-  --clr-cocoanut-cream: #F7F5D4;
-  --clr-moon-raker: #E7D4F7;
-  --clr-moon-raker-blue: #D4E0F7;
+  --clr-white-ice: #d4f7f3;
+  --clr-cocoanut-cream: #f7f5d4;
+  --clr-moon-raker: #e7d4f7;
+  --clr-moon-raker-blue: #d4e0f7;
 }
 
 html {

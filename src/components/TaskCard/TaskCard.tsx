@@ -1,10 +1,5 @@
-
 const TaskCard = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default TaskCard
+export default TaskCard;
