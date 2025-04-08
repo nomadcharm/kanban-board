@@ -1,14 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Boldonse&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Tektur:wght@400..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
   --clr-white: #ffffff;
   --clr-mine-shaft: #212121;
 
-  /* priority colors */
-  --md-milk-punch: #FFF7D6;
-  --md-text-brown: #8D5F01;
-  --high-cosmos: #FFD6D6;
-  --high-txt-red-berry: #8D0101;
-  --low-snowy-mint: #D6FFD8;
-  --low-txt-japanese-laurel: #018D0F;
+  /* column colors */
+  --clr-catskill-white: #F5FAF9;
+  --clr-spring-wood: #FAFAF5;
+  --clr-whisper: #F8F5FA;
+  --clr-pale-white: #F5F7FA;
+
+  /* text colors */
+  --clr-atoll: #0B6F62;
+  --clr-spicy-mustard: #6F690B;
+  --clr-windsor: #410B6F;
+  --clr-deep-sapphire: #0B2E6F;
+  --clr-dove-gray: #696969;
+
+  /* background colors*/
+  --clr-white-ice: #D4F7F3;
+  --clr-cocoanut-cream: #F7F5D4;
+  --clr-moon-raker: #E7D4F7;
+  --clr-moon-raker-blue: #D4E0F7;
 }
 
 html {
@@ -77,6 +90,7 @@ input {
 }
 
 body {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
   font-weight: 400;
   color: var(--clr-mine-shaft);
   background-color: var(--clr-white);
