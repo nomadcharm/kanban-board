@@ -1,6 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 import { ReactSVG } from "react-svg";
+import { useDraggable } from "@dnd-kit/core";
 import { Task } from "../../types/types";
 import { formatDate, getAssigneeName, getAssigneeInitial } from "../../utils";
 import { assignees } from "../../data/columns";
@@ -8,18 +9,30 @@ import taskIcon from "../../assets/img/icon-task.svg";
 import deleteIcon from "../../assets/img/icon-delete.svg";
 import StatusBar from "../StatusBar/StatusBar";
 import PriorityBar from "../PriorityBar/PriorityBar";
+import { useTasks } from "../../hooks/useTasks";
 
 interface TaskCardProps {
   task: Task;
-  handleDeleteTask: (taskName: string) => void;
 }
 
-const TaskCard: FC<TaskCardProps> = ({ task, handleDeleteTask }) => {
+const TaskCard: FC<TaskCardProps> = ({ task }) => {
   const assigneeName = getAssigneeName(task.assigneeId, assignees);
   const assigneeInitials = getAssigneeInitial(assigneeName);
 
+  const { handleDeleteTask } = useTasks()
+
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id: task.taskName,
+  });
+
+  const style = transform
+    ? {
+      transform: `translate(${transform.x}px, ${transform.y}px)`,
+    }
+    : undefined;
+
   return (
-    <Card id={task.statusId}>
+    <Card id={task.statusId} ref={setNodeRef} {...listeners} {...attributes} style={style} >
       <CardName>
         <ReactSVG src={taskIcon} style={{ fontSize: "0" }} />
         <span>{task.taskName}</span>
@@ -46,6 +59,7 @@ const TaskCard: FC<TaskCardProps> = ({ task, handleDeleteTask }) => {
 
 const Card = styled.article<{ id: number }>`
   position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -67,6 +81,7 @@ const Card = styled.article<{ id: number }>`
     }
   }};
   background-color: var(--clr-white);
+  cursor: grab;
 `;
 
 const CardName = styled.div`
@@ -81,6 +96,7 @@ const CardName = styled.div`
 
 const DeleteButton = styled.button`
   position: absolute;
+  z-index: 11111;
   top: 16px;
   right: 16px;
 `;

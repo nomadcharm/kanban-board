@@ -6,14 +6,13 @@ interface AddButtonProps {
 }
 
 const AddButton: FC<AddButtonProps> = ({ id }) => {
-
   return (
     <AddTaskButton id={id}>
       <span> + </span>
       <span>Новая задача</span>
     </AddTaskButton>
-  )
-}
+  );
+};
 
 const AddTaskButton = styled.button<{ id: number }>`
   display: flex;
