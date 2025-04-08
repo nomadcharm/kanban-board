@@ -1,10 +1,11 @@
 import { FC } from "react";
 import { Column as ColumnType, Task } from "../../types/types";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import TaskCard from "../TaskCard/TaskCard";
 import StatusBar from "../StatusBar/StatusBar";
+import { deleteTask } from "../../store/features/tasksSlice";
 
 interface ColumnProps {
   column: ColumnType;
@@ -13,6 +14,11 @@ interface ColumnProps {
 const Column: FC<ColumnProps> = ({ column }) => {
   const tasks = useSelector((state: RootState) => state.tasks);
   const filteredTasks = tasks.filter((task: Task) => task.statusId === column.id);
+  const dispatch = useDispatch();
+
+  const handleDeleteTask = (taskName: string) => {
+    dispatch(deleteTask({ taskName }));
+  };
 
   return (
     <ColumnContainer>
@@ -24,7 +30,7 @@ const Column: FC<ColumnProps> = ({ column }) => {
         <TaskList>
           {filteredTasks.map((task) => (
             <li key={task.taskName}>
-              <TaskCard task={task} />
+              <TaskCard task={task} handleDeleteTask={() => handleDeleteTask(task.taskName)} />
             </li>
           ))}
         </TaskList>

@@ -11,9 +11,10 @@ import PriorityBar from "../PriorityBar/PriorityBar";
 
 interface TaskCardProps {
   task: Task;
+  handleDeleteTask: (taskName: string) => void;
 }
 
-const TaskCard: FC<TaskCardProps> = ({ task }) => {
+const TaskCard: FC<TaskCardProps> = ({ task, handleDeleteTask }) => {
   const assigneeName = getAssigneeName(task.assigneeId, assignees);
   const assigneeInitials = getAssigneeInitial(assigneeName);
 
@@ -23,7 +24,7 @@ const TaskCard: FC<TaskCardProps> = ({ task }) => {
         <ReactSVG src={taskIcon} style={{ fontSize: "0" }} />
         <span>{task.taskName}</span>
       </CardName>
-      <DeleteButton>
+      <DeleteButton onClick={() => handleDeleteTask(task.taskName)}>
         <ReactSVG src={deleteIcon} />
       </DeleteButton>
       <CardInfo>
