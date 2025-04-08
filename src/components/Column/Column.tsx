@@ -1,12 +1,13 @@
 import { FC, useEffect } from "react";
-import { Column as ColumnType, Task } from "../../types/types";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
+import { Column as ColumnType, Task } from "../../types/types";
 import { RootState } from "../../store/store";
 import TaskCard from "../TaskCard/TaskCard";
 import StatusBar from "../StatusBar/StatusBar";
 import { deleteTask } from "../../store/features/tasksSlice";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import AddButton from "../AddButton/AddButton";
 
 interface ColumnProps {
   column: ColumnType;
@@ -45,7 +46,7 @@ const Column: FC<ColumnProps> = ({ column }) => {
             </li>
           ))}
         </TaskList>
-        <button style={{ fontSize: "20px" }}>Новая задача</button>
+        <AddButton id={column.id} />
       </ColumnBody>
     </ColumnContainer>
   );
@@ -71,6 +72,7 @@ const ColumnTaskCount = styled.div`
 `;
 
 const ColumnBody = styled.div<{ id: number }>`
+  position: relative;
   padding: 12px;
   height: 100%;
   border-radius: 20px;
@@ -88,6 +90,22 @@ const ColumnBody = styled.div<{ id: number }>`
         return "";
     }
   }};
+  overflow-y: auto;
+    &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #D9DBD7;
+    border-radius: 10px;
+  }
+  
+  scrollbar-width: thin;
+  scrollbar-color: #D9DBD7 transparent;
 `;
 
 const TaskList = styled.ul`
