@@ -9,10 +9,10 @@ import { useTasks } from "../../hooks/useTasks";
 const Board: FC = () => {
   const boardColumns = [columns[0], columns[1], columns[3], columns[2]];
   const { setStoredTasks, filteredTasks } = useTasks();
-  
+
   const handleDragEnd = (e: DragEndEvent) => {
     const { active, over } = e;
-    
+
     if (!over) return;
 
     const taskId = active.id as string;
@@ -25,12 +25,12 @@ const Board: FC = () => {
               ...task,
               statusId: newStatus,
             }
-            : task
-          )
-        );
-      };
-      
-      return (
+          : task
+      )
+    );
+  };
+
+  return (
     <KanbanBoard>
       <DndContext onDragEnd={handleDragEnd}>
         {boardColumns.map((col) => {

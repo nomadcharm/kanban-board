@@ -1,10 +1,11 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import styled from "styled-components";
 import { Column as ColumnType, Task } from "../../types/types";
 import TaskCard from "../TaskCard/TaskCard";
 import StatusBar from "../StatusBar/StatusBar";
 import AddButton from "../AddButton/AddButton";
 import { useDroppable } from "@dnd-kit/core";
+import AddTaskForm from "../AddTaskForm/AddTaskForm";
 
 interface ColumnProps {
   column: ColumnType;
@@ -12,6 +13,12 @@ interface ColumnProps {
 }
 
 const Column: FC<ColumnProps> = ({ column, tasks }) => {
+  const [showForm, setShowForm] = useState(false);
+
+  const handleAddButtonClick = () => {
+    setShowForm(true);
+  };
+
   const { setNodeRef } = useDroppable({
     id: column.id,
   });
@@ -23,6 +30,7 @@ const Column: FC<ColumnProps> = ({ column, tasks }) => {
         <ColumnTaskCount>{tasks.length}</ColumnTaskCount>
       </ColumnHeader>
       <ColumnBody id={column.id} ref={setNodeRef}>
+        {showForm && <AddTaskForm columnId={column.id} showForm={showForm} setShowForm={setShowForm} />}
         <TaskList>
           {tasks.map((task) => (
             <li key={task.taskName}>
@@ -30,7 +38,7 @@ const Column: FC<ColumnProps> = ({ column, tasks }) => {
             </li>
           ))}
         </TaskList>
-        <AddButton id={column.id} />
+        <AddButton id={column.id} onClick={handleAddButtonClick} />
       </ColumnBody>
     </ColumnContainer>
   );

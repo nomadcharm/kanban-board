@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteTask } from "../store/features/tasksSlice";
+import { addTask, deleteTask } from "../store/features/tasksSlice";
 import { RootState } from "../store/store";
 import { Task } from "../types/types";
 import { useLocalStorage } from "./useLocalStorage";
@@ -12,11 +12,18 @@ export const useTasks = () => {
 
   useEffect(() => {
     const localStorageData = localStorage.getItem("tasks");
-    if (!localStorageData) {
+    if (localStorageData) {
+      setStoredTasks(JSON.parse(localStorageData));
+    } else {
       setStoredTasks(tasks);
     }
-  }, [tasks, setStoredTasks]);
-  
+  }, [tasks]);
+
+  const handleAddTask = (data: Task) => {
+    dispatch(addTask(data));
+    setStoredTasks((prevTasks) => [...prevTasks, data]);
+  };
+
   const handleDeleteTask = (taskName: string) => {
     dispatch(deleteTask({ taskName }));
     const updatedTasks = storedTasks.filter((task) => task.taskName !== taskName);
@@ -27,5 +34,5 @@ export const useTasks = () => {
     return storedTasks.filter((task: Task) => task.statusId === statusId);
   };
 
-  return { storedTasks, setStoredTasks, handleDeleteTask, filteredTasks };
+  return { tasks, storedTasks, setStoredTasks, handleAddTask, handleDeleteTask, filteredTasks };
 };

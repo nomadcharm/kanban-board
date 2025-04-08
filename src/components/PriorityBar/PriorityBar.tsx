@@ -4,16 +4,21 @@ import styled from "styled-components";
 
 interface PriorityBarProps {
   priorityId: TaskPriority;
+  onClick?: () => void;
 }
 
-const PriorityBar: FC<PriorityBarProps> = ({ priorityId }) => {
+const PriorityBar: FC<PriorityBarProps> = ({ priorityId, onClick }) => {
   const priority: { [key in TaskPriority]: string } = {
     [TaskPriority.Low]: "Low",
     [TaskPriority.Medium]: "Medium",
     [TaskPriority.High]: "High",
   };
 
-  return <PriorityTag id={priorityId}>{priority[priorityId]}</PriorityTag>;
+  return (
+    <PriorityTag id={priorityId} onClick={onClick}>
+      {priority[priorityId]}
+    </PriorityTag>
+  );
 };
 
 const PriorityTag = styled.div<{ id: number }>`
@@ -48,6 +53,7 @@ const PriorityTag = styled.div<{ id: number }>`
         return "";
     }
   }};
+  cursor: pointer;
 `;
 
 export default PriorityBar;

@@ -19,7 +19,7 @@ const TaskCard: FC<TaskCardProps> = ({ task }) => {
   const assigneeName = getAssigneeName(task.assigneeId, assignees);
   const assigneeInitials = getAssigneeInitial(assigneeName);
 
-  const { handleDeleteTask } = useTasks()
+  const { handleDeleteTask } = useTasks();
 
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: task.taskName,
@@ -27,18 +27,18 @@ const TaskCard: FC<TaskCardProps> = ({ task }) => {
 
   const style = transform
     ? {
-      transform: `translate(${transform.x}px, ${transform.y}px)`,
-    }
+        transform: `translate(${transform.x}px, ${transform.y}px)`,
+      }
     : undefined;
 
   return (
-    <Card id={task.statusId} ref={setNodeRef} {...listeners} {...attributes} style={style} >
+    <Card id={task.statusId} ref={setNodeRef} {...listeners} {...attributes} style={style}>
       <CardName>
         <ReactSVG src={taskIcon} style={{ fontSize: "0" }} />
         <span>{task.taskName}</span>
       </CardName>
       <DeleteButton onClick={() => handleDeleteTask(task.taskName)}>
-        <ReactSVG src={deleteIcon} />
+        <ReactSVG src={deleteIcon} style={{ fontSize: "0" }} />
       </DeleteButton>
       <CardInfo>
         <CardAssignee>

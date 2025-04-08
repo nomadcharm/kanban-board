@@ -3,11 +3,12 @@ import styled from "styled-components";
 
 interface AddButtonProps {
   id: number;
+  onClick: () => void;
 }
 
-const AddButton: FC<AddButtonProps> = ({ id }) => {
+const AddButton: FC<AddButtonProps> = ({ id, onClick }) => {
   return (
-    <AddTaskButton id={id}>
+    <AddTaskButton id={id} onClick={onClick}>
       <span> + </span>
       <span>Новая задача</span>
     </AddTaskButton>
