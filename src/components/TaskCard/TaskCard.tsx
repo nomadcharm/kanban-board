@@ -91,7 +91,6 @@ const CardName = styled.div`
   max-width: 252px;
   font-weight: 600;
   font-size: 16px;
-  line-height: 20px;
 `;
 
 const DeleteButton = styled.button`
