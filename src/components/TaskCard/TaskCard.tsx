@@ -27,6 +27,7 @@ const TaskCard: FC<TaskCardProps> = ({ task }) => {
 
   const style = transform
     ? {
+        border: `2px solid var(--clr-cornflower-blue)`,
         transform: `translate(${transform.x}px, ${transform.y}px)`,
       }
     : undefined;
