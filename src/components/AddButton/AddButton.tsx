@@ -55,9 +55,42 @@ const AddTaskButton = styled.button<{ id: number }>`
         return "";
     }
   }};
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 
   span:first-child {
     font-size: 24px;
+  }
+
+  &:focus,
+  &:hover {
+    color: ${({ id }) => {
+      switch (id) {
+        case 0:
+          return "var(--clr-atoll)";
+        case 1:
+          return "var(--clr-spicy-mustard)";
+        case 2:
+          return "var(--clr-deep-sapphire)";
+        case 3:
+          return "var(--clr-windsor)";
+        default:
+          return "var(--clr-mine-shaft)";
+      }
+  }};
+  background: ${({ id }) => {
+    switch (id) {
+      case 0:
+        return "var(--clr-white-ice)";
+      case 1:
+        return "var(--clr-cocoanut-cream)";
+      case 2:
+        return "var(--clr-moon-raker-blue)";
+      case 3:
+        return "var(--clr-moon-raker)";
+      default:
+        return "";
+    }
+  }};
   }
 `;
 
