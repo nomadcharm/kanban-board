@@ -49,7 +49,6 @@ const ColumnContainer = styled.div`
   flex-direction: column;
   gap: 20px;
   width: calc((100% - 48px) / 4);
-  height: 100%;
 `;
 
 const ColumnHeader = styled.div`
@@ -81,23 +80,22 @@ const ColumnBody = styled.div<{ id: number }>`
         return "";
     }
   }};
-  // overflow-y: auto;
-  // overflow-x: none;
-  // &::-webkit-scrollbar {
-  //   width: 4px;
-  // }
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
 
-  // &::-webkit-scrollbar-track {
-  //   background: transparent;
-  // }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
 
-  // &::-webkit-scrollbar-thumb {
-  //   background-color: #D9DBD7;
-  //   border-radius: 10px;
-  // }
+  &::-webkit-scrollbar-thumb {
+    background-color: #D9DBD7;
+    border-radius: 10px;
+  }
 
-  // scrollbar-width: thin;
-  // scrollbar-color: #D9DBD7 transparent;
+  scrollbar-width: thin;
+  scrollbar-color: #D9DBD7 transparent;
 `;
 
 const TaskList = styled.ul`

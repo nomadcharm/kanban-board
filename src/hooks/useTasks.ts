@@ -21,7 +21,7 @@ export const useTasks = () => {
 
   const handleAddTask = (data: Task) => {
     dispatch(addTask(data));
-    setStoredTasks((prevTasks) => [...prevTasks, data]);
+    setStoredTasks((prevTasks: Task[]) => [...prevTasks, data]);
   };
 
   const handleDeleteTask = (taskName: string) => {

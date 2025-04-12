@@ -3,11 +3,13 @@
 :root {
   --clr-white: #ffffff;
   --clr-mine-shaft: #212121;
+  --clr-black: #000000;
   --clr-dove-gray: #696969;
   --clr-tundora: #474747;
   --clr-gray: #8f8f8f;
   --clr-niagara: #0a9e8e;
   --clr-cornflower-blue: #537BF3;
+  --clr-porcelain: #E7E8EA;
 
   /* waiting */
   --clr-catskill-white: #f5faf9;
@@ -41,6 +43,9 @@
   /* high priority */
   --clr-cosmos: #ffd6d6;
   --clr-red-berry: #8d0101;
+
+  /* with opacity */
+  --clr-atoll-80: #0b6f6280;
 }
 
 html {

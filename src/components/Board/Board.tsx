@@ -5,10 +5,11 @@ import Column from "../Column/Column";
 import { columns } from "../../data/columns";
 import { Task } from "../../types/types";
 import { useTasks } from "../../hooks/useTasks";
+import CompletionBar from "../CompletionBar/CompletionBar";
 
 const Board: FC = () => {
   const boardColumns = [columns[0], columns[1], columns[3], columns[2]];
-  const { setStoredTasks, filteredTasks } = useTasks();
+  const { storedTasks, setStoredTasks, filteredTasks } = useTasks();
 
   const handleDragEnd = (e: DragEndEvent) => {
     const { active, over } = e;
@@ -22,24 +23,38 @@ const Board: FC = () => {
       prevTasks.map((task) =>
         task.taskName === taskId
           ? {
-              ...task,
-              statusId: newStatus,
-            }
+            ...task,
+            statusId: newStatus,
+          }
           : task
       )
     );
   };
 
+  const lastColumn = boardColumns[boardColumns.length - 1];
+  const numbOfCompletedTasks = filteredTasks(lastColumn.id).length;
+  const completionPercentage = (numbOfCompletedTasks * 100) / storedTasks.length;
+
   return (
-    <KanbanBoard>
-      <DndContext onDragEnd={handleDragEnd}>
-        {boardColumns.map((col) => {
-          return <Column key={col.id} column={col} tasks={filteredTasks(col.id)} />;
-        })}
-      </DndContext>
-    </KanbanBoard>
+    <BoardWrapper>
+      <KanbanBoard>
+        <DndContext onDragEnd={handleDragEnd}>
+          {boardColumns.map((col) => {
+            return <Column key={col.id} column={col} tasks={filteredTasks(col.id)} />;
+          })}
+        </DndContext>
+      </KanbanBoard>
+      <CompletionBar percentage={completionPercentage} />
+    </BoardWrapper>
   );
 };
+
+const BoardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  height: calc(100% - 48px);
+`;
 
 const KanbanBoard = styled.div`
   display: flex;
